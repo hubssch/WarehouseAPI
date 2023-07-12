@@ -20,7 +20,8 @@ namespace WarehouseAPI.Controllers
             _db = db;
         }
 
-        [HttpGet]
+		[Authorize(Roles = "Admin,User")]
+		[HttpGet]
         public ActionResult<IEnumerable<DocumentDto>> GetDocuments()
         {
             var docs_list =
@@ -41,7 +42,8 @@ namespace WarehouseAPI.Controllers
             return docsDto.ToList();
         }
 
-        [HttpGet("{id}")]
+		[Authorize(Roles = "Admin,User")]
+		[HttpGet("{id}")]
         public ActionResult<DocumentDto> GetDocument(int id)
         {
             var doc_list = from docs in _db.Documents
@@ -64,9 +66,9 @@ namespace WarehouseAPI.Controllers
             return docDto;
         }
 
-        [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult<DocumentDto> CreateDocument(DocumentDataDto dto)
+		[HttpPost]
+		public ActionResult<DocumentDto> CreateDocument(DocumentDataDto dto)
         {
             var doc = new DbDocument
             {

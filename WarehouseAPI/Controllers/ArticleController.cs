@@ -18,7 +18,8 @@ namespace WarehouseAPI.Controllers
             _db = db;
         }
 
-        [HttpGet]
+		[Authorize(Roles = "Admin,User")]
+		[HttpGet]
         public ActionResult<IEnumerable<ArticleDto>> GetArticles()
         {
             var a_list = _db.Articles.ToList();
@@ -28,7 +29,8 @@ namespace WarehouseAPI.Controllers
             return aDtos.ToList();
         }
 
-        [HttpGet("{id}")]
+		[Authorize(Roles = "Admin,User")]
+		[HttpGet("{id}")]
         public ActionResult<ArticleDto> GetArticle(int id)
         {
             var a = _db.Articles.FirstOrDefault(a => a.ArticleID == id);
@@ -38,9 +40,9 @@ namespace WarehouseAPI.Controllers
             return new ArticleDto(a);
         }
 
-        [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult<ArticleDto> CreateArticle(ArticleDto dto)
+		[HttpPost]
+		public ActionResult<ArticleDto> CreateArticle(ArticleDto dto)
         {
             var a = new DbArticle
             {
