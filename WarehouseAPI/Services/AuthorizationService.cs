@@ -42,7 +42,7 @@ namespace WarehouseAPI.Services
             _dbcontext.SaveChanges();
         }
 
-        public object GenerateJwtAndGetUser(LoginDto dto)
+        public LoggedUserRecordDto GenerateJwtAndGetUser(LoginDto dto)
         {
             var user = _dbcontext.Users
                 .Include(u => u.Role)
@@ -80,7 +80,12 @@ namespace WarehouseAPI.Services
 
             user.PasswordHash = String.Empty;
 
-            return new { token = tokenHandler.WriteToken(token), user, message = "Login sucessfully" };
+            return new LoggedUserRecordDto {
+                IsLogged = true,
+                Token = tokenHandler.WriteToken(token),
+                UserItem = user,
+                Message = "Logged sucessfully"
+            };
         }
 
         public User GetLoggedUser(StringValues token)

@@ -40,12 +40,9 @@ namespace WarehouseAPI.Controllers
         }
 
         [HttpPost("login")]
-        public ActionResult Login([FromBody] LoginDto dto)
+        public ActionResult<LoggedUserRecordDto> Login([FromBody] LoginDto dto)
         {
-            var result = _accountService.GenerateJwtAndGetUser(dto);
-            string json = JsonSerializer.Serialize(result);
-
-            return Ok(json);
-        }
+            return _accountService.GenerateJwtAndGetUser(dto);
+		}
     }
 }
