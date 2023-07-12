@@ -1,7 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WarehouseAPI.Classes;
 using WarehouseAPI.Data;
@@ -20,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAuthenticationService, AuthorizationService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddScoped<ErrorHandlerService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendClient", builder =>
@@ -27,7 +27,6 @@ builder.Services.AddCors(options =>
         builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
     }
     );
-
 }
 );
 
@@ -47,13 +46,12 @@ builder.Services.AddAuthentication(option =>
     {
         ValidIssuer = authenticationSettings.JwtIssuer,
         ValidAudience = authenticationSettings.JwtIssuer,
-        /*ValidateIssuer = true,
+        ValidateIssuer = true,
         ValidateAudience = false,
-        ValidateLifetime = true,*/
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey)),
     };
 });
-//builder.Services.AddAuthorization();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -63,6 +61,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlerService>();
 
 app.UseAuthentication();
 app.UseHttpsRedirection();
