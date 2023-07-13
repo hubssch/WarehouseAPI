@@ -1,9 +1,7 @@
 ﻿using WarehouseAPI.Data;
 using WarehouseAPI.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WarehouseAPI.Data;
 
 /* to jest chyba do usuniecia */
 
@@ -19,7 +17,6 @@ namespace WarehouseAPI.Controllers
         {
             _db = db;
         }
-
 
         [HttpGet]
         [Authorize(Roles = "Admin")]

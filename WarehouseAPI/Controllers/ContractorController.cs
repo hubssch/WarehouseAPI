@@ -54,7 +54,6 @@ namespace WarehouseAPI.Controllers
                 Street = dto.Street
             };
 
-
             _db.Contracts.Add(cont);
             _db.SaveChanges();
 
