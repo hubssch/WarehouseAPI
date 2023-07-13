@@ -1,0 +1,26 @@
+﻿<Window x:Class="WarehouseApp.WinForms.DocumentsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseApp.WinForms"
+        mc:Ignorable="d"
+        Title="Lista dokumentów" Height="450" Width="800"
+        ResizeMode="NoResize">
+    <DockPanel>
+        <StackPanel Orientation="Vertical">
+            <DataGrid Name="dg_docs_list" Margin="10" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" MouseDoubleClick="lb_dbl_click_DocList" Height="360">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sygnatura" Binding="{Binding Signature}" Width="150"/>
+                    <DataGridTextColumn Header="Data" Binding="{Binding Date}" Width="150"/>
+                    <DataGridTextColumn Header="Typ Dokumentu" Binding="{Binding DocType}" Width="100"/>
+                    <DataGridTextColumn Header="Kontrahent" Binding="{Binding ContractData}" Width="380"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DockPanel HorizontalAlignment="Center">
+                <Button Content="Zamknij" Width="70" Margin="5" Click="btn_CancelDocumentsWindow" />
+                <Button Content="-" Width="32" Margin="5" Click="btn_RemoveDocument" />
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

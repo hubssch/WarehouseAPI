@@ -1,0 +1,19 @@
+﻿<Window x:Class="WarehouseApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseApp"
+        mc:Ignorable="d"
+        Title="System Magazynowy HUBIKON" Height="340" Width="420"
+        ResizeMode="NoResize">
+    <Grid>
+        <Button Content="Nowy Dokument" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" Width="141" Click="btn_NewDoc" Name="btnNewDoc" />
+        <Button Content="Lista Dokumentów" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" Width="141" Click="btn_ListDoc" Name="btnListDoc" />
+        <Button Content="Stany Magazynowe" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top" Width="141" Click="btn_StoreData" Name="btnStoreData" />
+        <Button Content="Lista Kontrahentów" HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Width="141" Click="btn_ListContract" Name="btnListCont" />
+        <Button Content="Logowanie" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="141" Click="btn_Login" Name="btnLogin" />
+        <Button Content="Zakończ" HorizontalAlignment="Center" Margin="0,235,0,0" VerticalAlignment="Top" Width="141" Click="btn_Exit" />
+        
+    </Grid>
+</Window>

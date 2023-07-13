@@ -1,0 +1,24 @@
+﻿<Window x:Class="WarehouseApp.WinForms.ContractForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseApp"
+        mc:Ignorable="d"
+        Title="Kontrahent" Height="317" Width="508"
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,0,4">
+        <Label Content="Nazwa" HorizontalAlignment="Left" Margin="62,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.811,0.577"/>
+        <TextBox HorizontalAlignment="Left" Margin="160,58,0,0" TextWrapping="Wrap" Text="nazwa" VerticalAlignment="Top" Width="270" Name="tb_ContractName"/>
+        <Label Content="NIP" HorizontalAlignment="Left" Margin="62,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.993,1.55"/>
+        <TextBox HorizontalAlignment="Left" Margin="160,89,0,0" TextWrapping="Wrap" Text="NIP" VerticalAlignment="Top" Width="100" Name="tb_NIP"/>
+        <Label Content="Ulica" HorizontalAlignment="Left" Margin="62,116,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="160,120,0,0" TextWrapping="Wrap" Text="ulica" VerticalAlignment="Top" Width="270" Name="tb_Street"/>
+        <Label Content="Poczta" HorizontalAlignment="Left" Margin="62,147,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="160,151,0,0" TextWrapping="Wrap" Text="poczta" VerticalAlignment="Top" Width="270" Name="tb_Post"/>
+        <Label Content="Kod pocztowy" HorizontalAlignment="Left" Margin="62,178,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="160,182,0,0" TextWrapping="Wrap" Text="kod" VerticalAlignment="Top" Width="100" Name="tb_PostalCode"/>
+        <Button Content="Zapisz" HorizontalAlignment="Center" Height="24" Margin="-200,237,0,0" VerticalAlignment="Top" Width="148" Click="btn_SaveContract"/>
+        <Button Content="Anuluj" HorizontalAlignment="Center" Height="24" Margin="200,237,0,0" VerticalAlignment="Top" Width="148" Click="btn_CancelContractWindow"/>
+    </Grid>
+</Window>
