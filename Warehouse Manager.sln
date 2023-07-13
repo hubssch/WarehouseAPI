@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseAPI", "WarehouseAPI\WarehouseAPI.csproj", "{A9EA3D12-69A2-4D43-AF0F-6EC1403B2B17}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WarehouseApp", "WarehouseApp\WarehouseApp.csproj", "{2F0EF968-2212-48EC-BE6D-ED96B452F3DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A9EA3D12-69A2-4D43-AF0F-6EC1403B2B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9EA3D12-69A2-4D43-AF0F-6EC1403B2B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9EA3D12-69A2-4D43-AF0F-6EC1403B2B17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0EF968-2212-48EC-BE6D-ED96B452F3DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0EF968-2212-48EC-BE6D-ED96B452F3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0EF968-2212-48EC-BE6D-ED96B452F3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0EF968-2212-48EC-BE6D-ED96B452F3DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
