@@ -1,15 +1,12 @@
-﻿using System.Windows;
-//using Magazynier.DatabaseAccess;
-using Magazynier.WinForms;
-using System;
+﻿using System;
+using System.Windows;
 using WarehouseApp.ApiAccess;
 using WarehouseApp.WinForms;
 
-namespace Magazynier
+namespace WarehouseApp
 {
     public partial class MainWindow : Window
     {
-        //private MagDbContext db;
         private string Token = String.Empty;
 
         private void InitialButtonSettings(bool ifEnable)
@@ -25,31 +22,29 @@ namespace Magazynier
             InitializeComponent();
 
             InitialButtonSettings(false);
-
-            //db = new MagDbContext();
         }
 
         private void btn_NewDoc(object sender, RoutedEventArgs e)
         {
-            DocumentForm documentWin = new DocumentForm();//db);
+            DocumentForm documentWin = new DocumentForm();
             documentWin.ShowDialog();
         }
 
         private void btn_ListDoc(object sender, RoutedEventArgs e)
         {
-            DocumentsForm documentsWin = new DocumentsForm();//db);
+            DocumentsForm documentsWin = new DocumentsForm();
             documentsWin.ShowDialog();
         }
 
         private void btn_StoreData(object sender, RoutedEventArgs e)
         {
-            ArticlesForm articlesWin = new ArticlesForm(/*db, */ArticlesWindowMode.EDIT_LIST);
+            ArticlesForm articlesWin = new ArticlesForm(ArticlesWindowMode.EDIT_LIST);
             articlesWin.ShowDialog();
         }
 
         private void btn_ListContract(object sender, RoutedEventArgs e)
         {
-            ContractsForm contractsWin = new ContractsForm(/*db, */ContractsWindowMode.EDIT_LIST);
+            ContractsForm contractsWin = new ContractsForm(ContractsWindowMode.EDIT_LIST);
             contractsWin.ShowDialog();
         }
 
@@ -64,7 +59,8 @@ namespace Magazynier
             ApiWrapper.Token = String.Empty;
 			LoginForm form = new LoginForm();
             bool? res = form.ShowDialog();
-			if (res ?? false)            {
+			if (res ?? false)
+			{
 				ApiWrapper.Token = Token = form.Token;
 				InitialButtonSettings(true);
 			}

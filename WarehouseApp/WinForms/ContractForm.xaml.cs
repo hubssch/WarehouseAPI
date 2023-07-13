@@ -1,10 +1,7 @@
 ﻿using System.Windows;
-
-//using Magazynier.DatabaseAccess;
-
 using WarehouseAPI.Models.Dto;
 
-namespace Magazynier.WinForms
+namespace WarehouseApp.WinForms
 {
     public enum ContractWindowMode
     {
@@ -14,12 +11,12 @@ namespace Magazynier.WinForms
 
     public partial class ContractForm : Window
     {
-        public delegate void return_contract_callback(/*ItemContract */ContractorDto contract);
+        public delegate void return_contract_callback(ContractorDto contract);
         public event return_contract_callback getData_CallBack;
 
         private ContractWindowMode EditMode;
 
-        private /*ItemContract */ ContractorDto stored_contract;
+        private ContractorDto stored_contract;
 
         public ContractForm()
         {
@@ -33,13 +30,12 @@ namespace Magazynier.WinForms
             this.tb_PostalCode.Clear();
             this.tb_Street.Clear();
 
-            //this.stored_contract = new ItemContract();
             this.stored_contract = new ContractorDto();
 
             this.getData_CallBack += DefaultCallBack;
         }
 
-        public ContractForm(ContractWindowMode mode, /*ItemContract */ContractorDto contract) : this()
+        public ContractForm(ContractWindowMode mode, ContractorDto contract) : this()
         {
             this.EditMode = mode;
 
@@ -65,7 +61,7 @@ namespace Magazynier.WinForms
             getData_CallBack(this.stored_contract);
         }
 
-        private void DefaultCallBack(/*ItemContract */ ContractorDto i) { }
+        private void DefaultCallBack(ContractorDto i) { }
 
         private void btn_CancelContractWindow(object sender, RoutedEventArgs e)
         {

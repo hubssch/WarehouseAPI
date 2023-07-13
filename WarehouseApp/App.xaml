@@ -1,7 +1,7 @@
-﻿<Application x:Class="Magazynier.App"
+﻿<Application x:Class="Warehouse.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Magazynier"
+             xmlns:local="clr-namespace:WarehouseApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

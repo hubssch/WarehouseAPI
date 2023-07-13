@@ -2,14 +2,11 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-
-//using Magazynier.DatabaseAccess;
-
 using WarehouseAPI.Models;
 using WarehouseAPI.Models.Dto;
 using WarehouseApp.ApiAccess;
 
-namespace Magazynier.WinForms
+namespace WarehouseApp.WinForms
 {
     public enum ContractsWindowMode
     {
@@ -19,19 +16,17 @@ namespace Magazynier.WinForms
 
     public partial class ContractsForm : Window
     {
-        //private MagDbContext dbContext;
 
         private ContractsWindowMode mode;
 
-        public delegate void selection_callback(/*ItemContract */ContractorDto contract);
+        public delegate void selection_callback(ContractorDto contract);
         public event selection_callback selected_getData_CallBack;
 
-        private void DefaultCallBack(/*ItemContract */ ContractorDto i) { }
+        private void DefaultCallBack(ContractorDto i) { }
 
-        public ContractsForm(/*MagDbContext context, */ContractsWindowMode mode = ContractsWindowMode.SELECT_CONTRACT)
+        public ContractsForm(ContractsWindowMode mode = ContractsWindowMode.SELECT_CONTRACT)
         {
             InitializeComponent();
-            //this.dbContext = context;
             this.mode = mode;
             this.Loaded += Contracts_Loaded;
             this.selected_getData_CallBack += DefaultCallBack;
@@ -51,8 +46,6 @@ namespace Magazynier.WinForms
         private void lb_dbl_click(object sender, MouseButtonEventArgs e)
         {
             ContractorDto selectedItemContract = (ContractorDto)dg_list.SelectedItem;
-			//DbContract selectedContract = (DbContract)dg_list.SelectedItem;
-			//ItemContract selectedItemContract = new ItemContract(selectedContract);
 
 			if (mode == ContractsWindowMode.SELECT_CONTRACT)
             {
@@ -67,35 +60,23 @@ namespace Magazynier.WinForms
             }
         }
 
-        private async void ContractAddition_getData_CallBack(/*ItemContract*/ContractorDto contract)
+        private async void ContractAddition_getData_CallBack(ContractorDto contract)
         {
             bool res = await ApiWrapper.CreateContract(contract);
             if (!res)
             {
                 MessageBox.Show("Nie udało się dodać kontrahenta. Sprawdź swoją rolę. Tylko Admin może dodawać i modyfikować dane magazynowe.");
             }
-            /*DbContract added_contract = new DbContract { Name = contract.Name, NIP = contract.NIP, Code = contract.Code, Post = contract.Post, Street = contract.Post };
-            dbContext.Add(added_contract);
-            dbContext.SaveChanges();*/
             RefreshGridDataSource();
         }
 
-        private async void ContractUpdate_getData_CallBack(/*ItemContract */ContractorDto contract)
+        private async void ContractUpdate_getData_CallBack(ContractorDto contract)
         {
 			bool res = await ApiWrapper.UpdateContractor(contract);
 			if (!res)
 			{
 				MessageBox.Show("Nie udało się zmodyfikować danych kontrahenta. Sprawdź swoją rolę. Tylko Admin może dodawać i modyfikować dane magazynowe.");
 			}
-            /*DbContract updated_contract = dbContext.Contracts.FirstOrDefault(c => c.ContractID == contract.ContractID);
-            if (updated_contract == null) return;
-            updated_contract.Name = contract.Name;
-            updated_contract.NIP = contract.NIP;
-            updated_contract.Street = contract.Street;
-            updated_contract.Code = contract.Code;
-            updated_contract.Post = contract.Post;
-            dbContext.Update(updated_contract);
-            dbContext.SaveChanges();*/
             RefreshGridDataSource();
         }
 
@@ -114,7 +95,6 @@ namespace Magazynier.WinForms
         private async void btn_RemoveContract(object sender, RoutedEventArgs e)
         {
             ContractorDto selectedContract = (ContractorDto)dg_list.SelectedItem;
-			//DbContract selectedContract = (DbContract) dg_list.SelectedItem;
 			if (selectedContract != null)
             {
                 bool res = await ApiWrapper.RemoveContractor(selectedContract.ContractID);
@@ -122,8 +102,6 @@ namespace Magazynier.WinForms
 				{
 					MessageBox.Show("Nie udało się usunąć kontrahenta. Sprawdź swoją rolę. Tylko Admin może usuwać dane magazynowe.");
 				}
-				/*dbContext.Contracts.Remove(selectedContract);
-                dbContext.SaveChanges();*/
 				RefreshGridDataSource();
             }
         }

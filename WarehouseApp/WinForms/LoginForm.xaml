@@ -10,8 +10,8 @@
     <Grid>
         <Label Content="E-mail" HorizontalAlignment="Left" Height="26" Margin="60,30,0,0" VerticalAlignment="Top" Width="64" />
         <Label Content="Hasło" HorizontalAlignment="Left" Height="23" Margin="60,90,0,0" VerticalAlignment="Top" Width="64" />
-        <TextBox Name="tb_mail" Text="hsa@hs.pl" HorizontalAlignment="Left" Height="26" Margin="125,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" />
-        <PasswordBox Name="pb_pass" Password="123456" HorizontalAlignment="Left" Height="32" Margin="125,90,0,0" VerticalAlignment="Top" Width="190 "/>
+        <TextBox Name="tb_mail" Text="" HorizontalAlignment="Left" Height="26" Margin="125,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" />
+        <PasswordBox Name="pb_pass" Password="" HorizontalAlignment="Left" Height="32" Margin="125,90,0,0" VerticalAlignment="Top" Width="190 "/>
         <Button Content="Loguj" HorizontalAlignment="Left" Height="27" Margin="60,150,0,0" VerticalAlignment="Top" Width="90" Click="btn_LogIn" />
         <Button Content="Anuluj" HorizontalAlignment="Right" Height="27" Margin="0,150,80,0" VerticalAlignment="Top" Width="90" IsCancel="True" />
     </Grid>

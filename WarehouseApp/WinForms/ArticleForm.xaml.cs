@@ -1,10 +1,8 @@
 ﻿using System.Windows;
 
-// using Magazynier.DatabaseAccess;
-
 using WarehouseAPI.Models.Dto;
 
-namespace Magazynier.WinForms
+namespace WarehouseApp.WinForms
 {
     public enum ArticleWindowMode
     {
@@ -15,10 +13,10 @@ namespace Magazynier.WinForms
 
     public partial class ArticleForm : Window
     {
-        public delegate void return_article_callback(/*ItemArticle */ArticleDto article);
+        public delegate void return_article_callback(ArticleDto article);
         public event return_article_callback getData_CallBack;
 
-		private /*ItemArticle */ArticleDto stored_article;
+		private ArticleDto stored_article;
 
         private ArticleWindowMode EditMode;
 
@@ -32,14 +30,14 @@ namespace Magazynier.WinForms
             this.tb_Desc.Clear();
             this.tb_Name.Clear();
 
-            this.stored_article = new /*ItemArticle */ArticleDto();
+            this.stored_article = new ArticleDto();
 
             this.EditMode = ArticleWindowMode.ADD;
 
             this.getData_CallBack += this.DefaultCallBack;
         }
 
-        public ArticleForm(ArticleWindowMode mode, /*ItemArticle */ArticleDto article) : this()
+        public ArticleForm(ArticleWindowMode mode, ArticleDto article) : this()
         {
             this.EditMode = mode;
             this.stored_article = article;
@@ -58,7 +56,7 @@ namespace Magazynier.WinForms
         private void btn_SaveArticle(object sender, RoutedEventArgs e)
         {
             this.stored_article.Name = tb_Name.Text;
-            this.stored_article.Amount = int.Parse(tb_Amount.Text); // TODO: funkcja do konwersji na liczby + try catch
+            this.stored_article.Amount = int.Parse(tb_Amount.Text);
             this.stored_article.Description = tb_Desc.Text;
 
             this.Close();
@@ -71,6 +69,6 @@ namespace Magazynier.WinForms
             this.Close();
         }
 
-        private void DefaultCallBack(/*ItemArticle */ArticleDto i) { }
+        private void DefaultCallBack(ArticleDto i) { }
     }
 }

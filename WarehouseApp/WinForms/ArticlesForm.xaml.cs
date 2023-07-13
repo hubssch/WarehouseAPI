@@ -3,12 +3,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-// using Magazynier.DatabaseAccess;
-
 using WarehouseAPI.Models.Dto;
 using WarehouseApp.ApiAccess;
 
-namespace Magazynier.WinForms
+namespace WarehouseApp.WinForms
 {
     public enum ArticlesWindowMode
     {
@@ -18,23 +16,22 @@ namespace Magazynier.WinForms
 
     public partial class ArticlesForm : Window
     {
-        //private MagDbContext dbContext;
 
         private ArticlesWindowMode mode;
 
-        public delegate void selection_callback(/*ItemArticle*/ArticleDto article);
+        public delegate void selection_callback(ArticleDto article);
         public event selection_callback selected_getData_CallBack;
 
-        public ArticlesForm(/*MagDbContext db, */ArticlesWindowMode mode = ArticlesWindowMode.SELECT_ARTICLE)
+        public ArticlesForm(ArticlesWindowMode mode = ArticlesWindowMode.SELECT_ARTICLE)
         {
             InitializeComponent();
-            //this.dbContext = db;
+
             this.mode = mode;
             this.Loaded += Articles_Loaded;
             this.selected_getData_CallBack += DefaultCallBack;
         }
 
-        private void DefaultCallBack(/*ItemArticle */ArticleDto i) { }
+        private void DefaultCallBack(ArticleDto i) { }
 
         private void Articles_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,8 +40,6 @@ namespace Magazynier.WinForms
 
         private void lb_dbl_click(object sender, MouseButtonEventArgs e)
         {
-            //DbArticle selectedArticle = (DbArticle) dg_list.SelectedItem;
-            //ItemArticle selectedItemArticle = new ItemArticle(selectedArticle);
             ArticleDto selectedItemArticle = (ArticleDto) dg_list.SelectedItem;
 
 
@@ -66,7 +61,6 @@ namespace Magazynier.WinForms
         {
             this.dg_list.ItemsSource = null;
             this.dg_list.ItemsSource = await ApiWrapper.GetArticles();
-			//this.dg_list.ItemsSource = dbContext.Articles.OrderBy(a => a.Name).ToList();
 		}
 
         private async void ArticleAddition_getData_CallBack(/*ItemArticle */ArticleDto article)
@@ -76,9 +70,6 @@ namespace Magazynier.WinForms
 			{
 				MessageBox.Show("Nie udało się dodać artykułu. Sprawdź swoją rolę. Tylko Admin może dodawać i modyfikować dane magazynowe.");
 			}
-			/*DbArticle added_article = new DbArticle { Name = article.Name, Description = article.Description, Amount = article.Amount };
-            dbContext.Add(added_article);
-            dbContext.SaveChanges();*/
 			RefreshGridDataSource();
         }
 
@@ -89,13 +80,6 @@ namespace Magazynier.WinForms
 			{
 				MessageBox.Show("Nie udało się zmodyfikować danych artykułu. Sprawdź swoją rolę. Tylko Admin może dodawać i modyfikować dane magazynowe.");
 			}
-			/*DbArticle updated_article = dbContext.Articles.FirstOrDefault(a => a.ArticleID == article.ArticleID);
-            if (updated_article == null) return;
-            updated_article.Name = article.Name;
-            updated_article.Description = article.Description;
-            updated_article.Amount = article.Amount;
-            dbContext.Update(updated_article);
-            dbContext.SaveChanges();*/
 			RefreshGridDataSource();
         }
 
@@ -114,7 +98,6 @@ namespace Magazynier.WinForms
         private async void btn_RemoveArticle(object sender, RoutedEventArgs e)
         {
             ArticleDto selectedArticle = (ArticleDto) dg_list.SelectedItem;
-			//DbArticle selectedArticle = (DbArticle) dg_list.SelectedItem;
 			if (selectedArticle != null)
             {
 				bool res = await ApiWrapper.RemoveArticle(selectedArticle.ArticleID);
@@ -122,8 +105,6 @@ namespace Magazynier.WinForms
 				{
 					MessageBox.Show("Nie udało się usunąć artykułu. Sprawdź swoją rolę. Tylko Admin może usuwać dane magazynowe.");
 				}
-				/*dbContext.Articles.Remove(selectedArticle);
-                dbContext.SaveChanges();*/
 				RefreshGridDataSource();
             }
 		}
