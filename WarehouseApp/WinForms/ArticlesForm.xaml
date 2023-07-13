@@ -1,0 +1,26 @@
+﻿<Window x:Class="Magazynier.WinForms.ArticlesForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Magazynier.WinForms"
+        mc:Ignorable="d"
+        Title="Lista Towarów" Height="460" Width="800"
+        ResizeMode="NoResize">
+    <DockPanel>
+        <StackPanel Orientation="Vertical">
+            <DataGrid Name="dg_list" Margin="10" AutoGenerateColumns="False"  SelectionMode="Single" SelectionUnit="FullRow" MouseDoubleClick="lb_dbl_click" Height="360">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="350"/>
+                    <DataGridTextColumn Header="Stan Magazynowy" Binding="{Binding Amount}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DockPanel HorizontalAlignment="Center">
+                <Button Content="+" Width="32" Margin="5" Click="btn_AddArticle" />
+                <Button Content="Zamknij" Width="70" Margin="5" Click="btn_CancelArticleWindow" />
+                <Button Content="-" Width="32" Margin="5" Click="btn_RemoveArticle" />
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>

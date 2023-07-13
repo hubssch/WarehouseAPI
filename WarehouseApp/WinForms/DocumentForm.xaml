@@ -1,0 +1,59 @@
+﻿<Window x:Class="Magazynier.WinForms.DocumentForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Magazynier.WinForms"
+        mc:Ignorable="d"
+        Title="Dokument" Height="550" Width="800"
+        ResizeMode="NoResize">
+    <Grid>
+        <GroupBox HorizontalAlignment="Left" Height="71" Header=" Operacja " Margin="28,23,0,0" VerticalAlignment="Top" Width="326"/>
+        <RadioButton Content="Przyjęcie" HorizontalAlignment="Left" Height="19" Margin="44,59,0,0" VerticalAlignment="Top" Width="120" Name="rb_in_doc" Checked="rb_in_doc_checked"/>
+        <RadioButton Content="Wydanie" HorizontalAlignment="Left" Height="19" Margin="265,57,0,0" VerticalAlignment="Top" Width="78" Name="rb_out_doc" Checked="rb_out_doc_checked"/>
+        <Label Content="Sygnatura dok." HorizontalAlignment="Left" Height="26" Margin="483,23,0,0" VerticalAlignment="Top" Width="97"/>
+        <TextBox HorizontalAlignment="Left" Margin="585,27,0,0" TextWrapping="Wrap" Text="sygnatura" VerticalAlignment="Top" Width="178" RenderTransformOrigin="0.433,-0.528" Name="tb_signature"/>
+        <GroupBox HorizontalAlignment="Left" Height="113" Header=" Kontrahent " Margin="476,58,0,0" VerticalAlignment="Top" Width="287">
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Left" HorizontalAlignment="Stretch">
+                    <Grid Background="Gray">
+                        <Label Content="Nazwa"/>
+                        <TextBox Width="150" Margin="60,0,0,0" Text="Nazwa Kontrahenta" Name="tb_ContName" IsEnabled="False"/>
+                    </Grid>
+                    <Grid Background="LightGray">
+                        <Label Content="NIP" />
+                        <TextBox Width="150" Margin="60,0,0,0" Text="NIP" Name="tb_NIP" IsEnabled="False"/>
+                    </Grid>
+                    <Grid Background="Gray">
+                        <Label Content="Adres"/>
+                        <TextBox Width="150" Margin="60,0,0,0" Text="Adres" Name="tb_Address" IsEnabled="False"/>
+                    </Grid>
+                </StackPanel>
+                <Grid Width="24" DockPanel.Dock="Right">
+                    <Button Content="+" VerticalAlignment="Top" Width="24" Height="24" Name="btn_choose_contract" Click="btn_ChooseContract"/>
+                </Grid>
+            </DockPanel>
+        </GroupBox>
+        <DataGrid
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Height="268" Width="735"
+            Margin="28,171,0,0"
+            Name="dg_DocArticles"
+            AutoGenerateColumns="False"
+            SelectionMode="Single" SelectionUnit="FullRow"
+            MouseDoubleClick="lb_dbl_click_articles"
+            KeyUp="keyup_articles">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Description}" Width="400" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Ilość" Binding="{Binding Amount}" Width="50" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Artykuły" HorizontalAlignment="Left" Margin="28,145,0,0" VerticalAlignment="Top" Width="58"/>
+        <Button Content="Zapisz" HorizontalAlignment="Left" Margin="234,472,0,0" VerticalAlignment="Top" Width="123" Name="btn_save" Click="btn_SaveDoc"/>
+        <Button Content="Anuluj" HorizontalAlignment="Left" Margin="434,472,0,0" VerticalAlignment="Top" Width="123" Click="btn_CancelDoc"/>
+        <Button Content="+" HorizontalAlignment="Left" Height="24" Margin="91,147,0,0" VerticalAlignment="Top" Width="24" Name="btn_choose_article" Click="btn_ChooseArticle"/>
+        <Button Content="-" HorizontalAlignment="Left" Height="24" Margin="120,147,0,0" VerticalAlignment="Top" Width="24" Name="btn_delete_article" Click="btn_DelSelArticle"/>
+    </Grid>
+</Window>

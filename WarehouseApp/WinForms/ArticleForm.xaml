@@ -1,0 +1,20 @@
+﻿<Window x:Class="Magazynier.WinForms.ArticleForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Magazynier.WinForms"
+        mc:Ignorable="d"
+        Title="Artykuł" Height="450" Width="800">
+    <Grid>
+        <Label Content="Nazwa" HorizontalAlignment="Left" Margin="67,60,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="141,64,0,0" TextWrapping="Wrap" Text="nazwa" VerticalAlignment="Top" Width="168" Name="tb_Name"/>
+        <GroupBox Header=" Opis " Margin="67,102,67,120">
+            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="opis opis opis" Width="636" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Name="tb_Desc"/>
+        </GroupBox>
+        <Label Content="Ilość" HorizontalAlignment="Left" Margin="419,60,0,0" VerticalAlignment="Top" Name="lb_Amount"/>
+        <TextBox HorizontalAlignment="Left" Margin="485,64,0,0" TextWrapping="Wrap" Text="ilość" VerticalAlignment="Top" Width="72" Name="tb_Amount" />
+        <Button Content="Zapisz" HorizontalAlignment="Center" Margin="-200,364,0,0" VerticalAlignment="Top" Width="114" Click="btn_SaveArticle"/>
+        <Button Content="Anuluj" HorizontalAlignment="Center" Margin="200,364,0,0" VerticalAlignment="Top" Width="114" Click="btn_CancelArticle"/>
+    </Grid>
+</Window>
