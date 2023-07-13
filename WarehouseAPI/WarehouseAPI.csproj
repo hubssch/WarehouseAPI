@@ -6,6 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;8601;8618;8603;8600;8602;CS8603</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;8601;8618;8603;8600;8602;CS8603</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.19" />
@@ -19,5 +27,9 @@
     <PackageReference Include="Microsoft.OpenApi" Version="1.6.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="echo xcopy /y $(ProjectDir)warehouse.db $(ProjectDir)$(OutDir)&#xD;&#xA;xcopy /y &quot;$(ProjectDir)warehouse.db&quot; &quot;$(ProjectDir)$(OutDir)&quot;" />
+  </Target>
 
 </Project>
