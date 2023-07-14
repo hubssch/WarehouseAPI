@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using WarehouseAPI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WarehouseAPI.Controllers
 {
@@ -29,14 +30,17 @@ namespace WarehouseAPI.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("register")]
         public ActionResult RegisterUser([FromBody] RegisterDataDto dto)
         {
-            _accountService.RegisterUser(dto);
+            string result = _accountService.RegisterUser(dto);
+
+            if (!result.Equals("ok")) return StatusCode(StatusCodes.Status406NotAcceptable, JsonSerializer.Serialize(new { message = result }));
 
             var response = new { message = "Registration successful!" };
-            string json = JsonSerializer.Serialize(response);
-            return Ok(json);
+
+            return Ok(JsonSerializer.Serialize(response));
         }
 
         [HttpPost("login")]

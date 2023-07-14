@@ -27,7 +27,7 @@ namespace WarehouseAPI.Services
             _authenticationSettings = authenticationSettings;
         }
 
-        public void RegisterUser(RegisterDataDto dto)
+        public string RegisterUser(RegisterDataDto dto)
         {
             var newUser = new User()
             {
@@ -35,11 +35,20 @@ namespace WarehouseAPI.Services
                 RoleId = dto.RoleId,
             };
 
+            var user = _dbcontext.Users.FirstOrDefault(u => u.Email.Equals(dto.Email));
+            var role = _dbcontext.Roles.FirstOrDefault(r => r.Id == dto.RoleId);
+
+            if (user is not null) return "Email is already used in database";
+            if (role is null) return "Unknown rule ID used";
+            if (dto.Password != dto.ConfirmPassword) return "Passwords mismatch";
+
             var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
             newUser.PasswordHash = hashedPassword;
 
             _dbcontext.Users.Add(newUser);
             _dbcontext.SaveChanges();
+
+            return "ok";
         }
 
         public LoggedUserRecordDto GenerateJwtAndGetUser(LoginDto dto)
