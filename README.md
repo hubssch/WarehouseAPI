@@ -12,7 +12,7 @@ działania na bazie danych w aplikacji (serwerze) backendowym. Aby możliwa był
 którego realizacja nastąpiła poprzez wykorzystanie mechanizmów bibliotek JWT. Uzyskane w procesie logowania token aplikacja frontendowa wysyła z każdym kolejnym requestem
 do backendu.
 
-API dostępne w aplikacji fronendowej jest dostępne w formie WEB serwowanej przez mechanizmy swagger pod powyższym https://localhost:7167/swagger/index.html.
+API dostępne w aplikacji backendowej jest dostępne w formie WEB serwowanej przez mechanizmy swagger pod powyższym https://localhost:7167/swagger/index.html (w trybie debug/development).
 
 Zapytania GET (zwracanie danych) mogą być realizowane po zalogowaniu się i uzyskaniu tokena obu typów użytkowników (role), czyli zarówno Admin jak i User.
 Metody POST (tworzenie rekordów), PUT (aktualizacja rekordów), DELETE (usuwanie rekodorów) mogą zostać wykonywane jedynie za pomocą użytkownika z rolą Admin.
