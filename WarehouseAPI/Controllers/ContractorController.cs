@@ -30,8 +30,8 @@ namespace WarehouseAPI.Controllers
             return contDtos.ToList();
         }
 
-		[Authorize(Roles = "Admin,User")]
-		[HttpGet("{id}")]
+        [Authorize(Roles = "Admin,User")]
+        [HttpGet("{id}")]
         public ActionResult<ContractorDto> GetContractor(int id)
         {
             var cont = _db.Contracts.FirstOrDefault(c => c.ContractID == id);
@@ -42,8 +42,8 @@ namespace WarehouseAPI.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-		[HttpPost]
-		public ActionResult<DocumentDto> CreateContractor(ContractorDto dto)
+        [HttpPost]
+        public ActionResult<DocumentDto> CreateContractor(ContractorDto dto)
         {
             var cont = new DbContract
             {

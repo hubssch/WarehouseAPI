@@ -24,11 +24,11 @@ namespace WarehouseAPI.Services
             }
             catch (TokenException tokenException)
             {
-				var data = new { message = tokenException.Message };
+                var data = new { message = tokenException.Message };
 
-				context.Response.StatusCode = 403;
-				await context.Response.WriteAsJsonAsync(data);
-			}
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsJsonAsync(data);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);

@@ -47,6 +47,6 @@ namespace WarehouseAPI.Controllers
         public ActionResult<LoggedUserRecordDto> Login([FromBody] LoginDto dto)
         {
             return _accountService.GenerateJwtAndGetUser(dto);
-		}
+        }
     }
 }
