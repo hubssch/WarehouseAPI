@@ -74,6 +74,7 @@ użytkownika.
 Aplikacji pozwala naciskać przyciski otwierające okna dodawania dokumentów, artykułów czy kontrahentów dla użytkowników obu ról, ale zgodnie z założeniami projektu (zadania z przedmiotu)
 zapis rekordów dla użytkowników z rolą User jest blokowany na poziomie API i powoduje zwracania kodu 401. Aplikacji frontendowa wyświetla w takim momencie odpowiedni komunikat. Dla
 przykładu próba dodania kontrahenta jako użytkownik o roli _User_ zakończy się komunikatem przedstawionym na kolejnym obrazku
+
 ![Zablokowania rola User](https://raw.githubusercontent.com/hubssch/WarehouseMan/main/docs/warehouse-man-role-blocked.jpg)
 
 ### Dodanie dokumentu
