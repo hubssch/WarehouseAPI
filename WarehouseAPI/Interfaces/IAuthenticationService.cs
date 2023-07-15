@@ -6,7 +6,7 @@ namespace WarehouseAPI.Interfaces
 {
     public interface IAuthenticationService
     {
-        void RegisterUser(RegisterDataDto dto);
+        string RegisterUser(RegisterDataDto dto);
         LoggedUserRecordDto GenerateJwtAndGetUser(LoginDto dto);
         User GetLoggedUser(StringValues token);
     }

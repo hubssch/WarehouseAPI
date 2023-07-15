@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using WarehouseAPI.Models;
 using WarehouseAPI.Models.Dto;
 
 namespace WarehouseApp.ApiAccess
@@ -42,13 +40,6 @@ namespace WarehouseApp.ApiAccess
 					conts = await response.Content.ReadAsAsync<List<ContractorDto>>();
 				}
 			}
-			/*
-			HttpResponseMessage response = await client.GetAsync("api/contractor");
-			if (response.IsSuccessStatusCode)
-			{
-				conts = await response.Content.ReadAsAsync<List<ContractorDto>>();
-			}
-			*/
 			return conts;
 		}
 
@@ -56,11 +47,6 @@ namespace WarehouseApp.ApiAccess
 		{
 			List<DocumentDto> documents = null;
 			SetHttpClient();
-			/*HttpResponseMessage response = await client.GetAsync("api/doc");
-			if (response.IsSuccessStatusCode)
-			{
-				documents = await response.Content.ReadAsAsync<List<DocumentDto>>();
-			}*/
 			using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, "api/doc"))
 			{
 				requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -77,11 +63,6 @@ namespace WarehouseApp.ApiAccess
 		{
 			DocumentAllDataDto document = null;
 			SetHttpClient();
-			/*HttpResponseMessage response = await client.GetAsync("api/doc");
-			if (response.IsSuccessStatusCode)
-			{
-				documents = await response.Content.ReadAsAsync<List<DocumentDto>>();
-			}*/
 			using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"api/doc/all/{id}"))
 			{
 				requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
